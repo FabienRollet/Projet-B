@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvte0tqq0imfn"]
+
+[ext_resource type="Texture2D" uid="uid://bqb4lydvsky53" path="res://sprites/sprite.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://c64er3pxn4e1f" path="res://scenes/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
+size = Vector2(16, 16)
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7p1mj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
