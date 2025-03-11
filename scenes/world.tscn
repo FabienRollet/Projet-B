@@ -15,12 +15,6 @@ sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 
 [node name="World" type="Node"]
 
-[node name="background" type="Sprite2D" parent="."]
-self_modulate = Color(0.56, 0.56, 0.56, 1)
-position = Vector2(-9.53674e-07, 1)
-scale = Vector2(84.875, 47.375)
-texture = ExtResource("1_f3sb7")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -31,5 +25,6 @@ layer_0/tile_data = PackedInt32Array(-1245220, 0, 0, -1179684, 0, 0, -1114148, 0
 [node name="player" parent="." instance=ExtResource("2_rwgxs")]
 position = Vector2(1, 0)
 
-[node name="enemy" parent="." instance=ExtResource("3_4wyf3")]
-position = Vector2(-447, -50)
+[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_4wyf3")]
+position = Vector2(-168, -111)
+player = NodePath("../player")

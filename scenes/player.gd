@@ -2,18 +2,16 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 var bullet = preload("res://scenes/bullet.tscn")
+var dir : Vector2
+
+func _unhandled_input(event: InputEvent) -> void:
+	dir.x =Input.get_axis("left","right")
+	dir.y = Input.get_axis("top","down")
+	dir = dir.normalized()
+
 
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	direction = Input.get_axis("top", "down")
-	if direction:
-		velocity.y = direction * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+	velocity = dir * SPEED
 	look_at(get_global_mouse_position())
 	move_and_slide()
 
